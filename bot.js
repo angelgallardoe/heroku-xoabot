@@ -1,7 +1,7 @@
 /** * A bot that welcomes new guild members when they join */
 // Import the discord.js module
 const Discord = require('discord.js');
-const { Client, Attachment } = require('discord.js');
+const Attachment = require('discord.js');
 
 // Create an instance of a Discord client
 const client = new Discord.Client();
@@ -49,7 +49,7 @@ client.on('message', message => {
 		const attachment = new Attachment('https://i.imgur.com/GMHQ3kZ.jpg');
         // Send the attachment in the message channel
         message.channel.send(attachment);
-	}
+	}}
 	else if (command === 'server') {
 		message.channel.send(`Server: ${message.guild.name}\nUsuaries: ${message.guild.memberCount}`);
 	}
