@@ -23,28 +23,15 @@ client.on('message', function (user, userID, channelID, message, evt) {
         args = args.splice(1);
         switch(cmd) {
             // !ping
-            case 'pinga':
+            case 'ping':
                 bot.sendMessage({
                     to: channelID,
-                    message: 'Ponga!'
+                    message: 'Pong!'
                 });
             break;
             // Just add any case commands if you want to..
          }
      }
-});
-
-// M E N S A J E S //
-client.on("message", (message) {
-  if (message.content == ("!ping1")) {
-    message.channel.send("pong!");
-  }
-  else if (message.content == "!ping2") {
-    	message.reply("Pong!");
-  	} 
-    else if (message.content == "!cigarro") {
-        message.reply("No tengo gil conchetumare");
-     }  
 });
 
 // Log our bot in using the token from https://discordapp.com/developers/applications/me
