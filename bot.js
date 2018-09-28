@@ -39,20 +39,20 @@ client.on('message', message => {
 		message.channel.send('Boop.');
 	}
 	else if (command === 'server') {
-		message.channel.send('ID: ${message.guild.name}\nUsers: ${message.guild.memberCount}');
+		message.channel.send(`Server: ${message.guild.name}\nUsuaries: ${message.guild.memberCount}`);
 	}
 	else if (command === 'user-info') {
-		message.channel.send('User: ${message.author.username}\nID: ${message.author.id}');
+		message.channel.send(`Nombre: ${message.author.username}\nID: ${message.author.id}`);
 	}
 	else if (command === 'info') {
 		if (!args.length) {
-			return message.channel.send('You didn't provide any arguments, ${message.author}!');
+			return message.channel.send(`You didn't provide any arguments, ${message.author}!`);
 		}
 		else if (args[0] === 'foo') {
 			return message.channel.send('bar');
 		}
 
-		message.channel.send('First argument: ${args[0]}');
+		message.channel.send(`First argument: ${args[0]}`);
 	}
 	else if (command === 'kick') {
 		if (!message.mentions.users.size) {
@@ -61,15 +61,15 @@ client.on('message', message => {
 
 		const taggedUser = message.mentions.users.first();
 
-		message.channel.send('You wanted to kick: ${taggedUser.username}');
+		message.channel.send(`You wanted to kick: ${taggedUser.username}`);
 	}
 	else if (command === 'avatar') {
 		if (!message.mentions.users.size) {
-			return message.channel.send('Your avatar: ${message.author.displayAvatarURL}');
+			return message.channel.send(`Your avatar: ${message.author.displayAvatarURL}`);
 		}
 
 		const avatarList = message.mentions.users.map(user => {
-			return '${user.username}'s avatar: ${user.displayAvatarURL}';
+			return `${user.username}'s avatar: ${user.displayAvatarURL}`;
 		});
 
 		message.channel.send(avatarList);
