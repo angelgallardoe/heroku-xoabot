@@ -1,17 +1,15 @@
 /** * A bot that welcomes new guild members when they join */
 // Import the discord.js module
+const fs = require('fs');
 const Discord = require('discord.js');
-const fs = require("fs");
 
 // Create an instance of a Discord client
 const client = new Discord.Client();
 
 const { prefix } = require('./config.json');
 
-/**
- * The ready event is vital, it means that only _after_ this will your bot start reacting to information
- * received from Discord
- */
+/** * The ready event is vital, it means that only _after_ this will your bot start reacting to information
+ * received from Discord */
 client.on('ready', () => {
   console.log('I am ready!');
 });
@@ -129,7 +127,7 @@ client.on("message", message => {
   fs.writeFile("./points.json", JSON.stringify(points), (err) => {
     if (err) console.error(err)
   });
-
+});
 
 //DADOS//
 
