@@ -8,7 +8,6 @@ const Discord = require('discord.js');
 // Create an instance of a Discord client
 const client = new Discord.Client();
 
-var bot = new Discord.Client({autorun: true});
 
 /**
  * The ready event is vital, it means that only _after_ this will your bot start reacting to information
@@ -18,12 +17,12 @@ client.on('ready', () => {
   console.log('I am ready!');
 });
 
-bot.on('ready', function (evt) {
+client.on('ready', function (evt) {
     logger.info('Connected');
     logger.info('Logged in as: ');
-    logger.info(bot.username + ' - (' + bot.id + ')');
+    logger.info(client.username + ' - (' + client.id + ')');
 });
-bot.on('message', function (user, userID, channelID, message, evt) {
+client.on('message', function (user, userID, channelID, message, evt) {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
     if (message.substring(0, 1) == '!') {
@@ -42,6 +41,29 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             // Just add any case commands if you want to..
          }
      }
+});
+
+// PING CHECK//
+client.on("message", (message)){ // EventEmitter
+	if(message.content == "!pinga"){ // Check if message is "!ping"
+			message.channel.send("Pinging ...") // Placeholder for pinging ... 
+			.then((msg) => { // Resolve promise
+				msg.edit("Ping: " + (Date.now() - msg.createdTimestamp)) // Edits message with current timestamp minus timestamp of message
+			});
+		}
+}
+
+// M E N S A J E S //
+client.on("message", (message) => {
+  if (message.content == ("ping")) {
+    message.channel.send("pong!");
+  }
+  else if (message.content == "!ping") {
+    	message.reply("Pong!");
+  	} 
+    else if (message.content == "!cigarro") {
+        message.reply("No tengo gil conchetumare");
+     }  
 });
 
 // Log our bot in using the token from https://discordapp.com/developers/applications/me
