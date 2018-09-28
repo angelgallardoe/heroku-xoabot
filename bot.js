@@ -13,25 +13,27 @@ client.on('ready', () => {
   console.log('I am ready!');
 });
 
-client.on('message', function (user, userID, channelID, message) {
-    // Our bot needs to know if it will execute a command
-    // It will listen for messages that will start with `!`
-    if (message.substring(0, 1) == '!') {
-        var args = message.substring(1).split(' ');
-        var cmd = args[0];
-       
-        args = args.splice(1);
-        switch(cmd) {
-            // !ping
-            case 'ping':
-                bot.sendMessage({
-                    to: channelID,
-                    message: 'Pong!'
-                });
-            break;
-            // Just add any case commands if you want to..
-         }
-     }
+// PING CHECK//
+client.on("message", (message)){ // EventEmitter
+	if(message.content == "!ping"){ // Check if message is "!ping"
+			message.channel.send("Pinging ...") // Placeholder for pinging ... 
+			.then((msg) => { // Resolve promise
+				msg.edit("Ping: " + (Date.now() - msg.createdTimestamp)) // Edits message with current timestamp minus timestamp of message
+			});
+		}
+}
+
+// M E N S A J E S //
+client.on("message", (message) => {
+  if (message.content == ("ping")) {
+    message.channel.send("pong!");
+  }
+  else if (message.content == "!ping") {
+    	message.reply("Pong!");
+  	} 
+    else if (message.content == "!cigarro") {
+        message.reply("No tengo gil conchetumare");
+     }  
 });
 
 // Log our bot in using the token from https://discordapp.com/developers/applications/me
