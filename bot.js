@@ -9,26 +9,33 @@ client.on('ready', () => {
 console.log('I am ready!');
 });
 
-// Create an event listener for new guild members //
+// Create an event listener for new guild members
 client.on('guildMemberAdd', member => {
   // Send the message to a designated channel on a server:
   const channel = member.guild.channels.find(ch => ch.name === 'member-log');
   // Do nothing if the channel wasn't found on this server
   if (!channel) return;
   // Send the message, mentioning the member
-  channel.send(`Bienvenido a la weá, ${member}`);
+  channel.send("Welcome to the server, ${member}");
 });
 
 // M E N S A J E S //
-client.on('message', message => {
-    if (message.content === '!ping') {
-    	message.reply('Pong!');
+client.on("message", (message)){ // EventEmitter
+	if(message.content == "!ping"){ // Check if message is "!ping"
+			message.channel.send("Pinging ...") // Placeholder for pinging ... 
+			.then((msg) => { // Resolve promise
+				msg.edit("Ping: " + (Date.now() - msg.createdTimestamp)) // Edits message with current timestamp minus timestamp of message
+    if (message.content === "!ping") {
+    	message.reply("Pong!");
   	} else
         
-     if (message.content === '!cigarro') {
-        message.reply('No tengo gil conchetumare');
-     }
-});
+     if (message.content === "!cigarro") {
+        message.reply("No tengo gil conchetumare");
+     }            
+            
+            });
+		}
+}
 
 // THIS  MUST  BE  THIS  WAY //
 client.login(process.env.bot_token);
