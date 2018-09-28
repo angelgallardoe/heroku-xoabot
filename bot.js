@@ -44,6 +44,11 @@ client.on('message', message => {
 		else if (command === 'roll-info') {
 		message.channel.send('Info tirado de dados\n!roll :     1d6 (1 dado de 6)\n!roll 15 : d15 (1 dado de 15)\n!roll 4d : 4d6 (4 dados de 6)\n!roll 4d30 : 4d30 (4 dados de 30)');
 	}
+		else if (command === 'scubi') {
+		const attachment = new Attachment('https://i.imgur.com/GMHQ3kZ.jpg');
+        // Send the attachment in the message channel
+        message.channel.send(attachment);
+	}
 	else if (command === 'server') {
 		message.channel.send(`Server: ${message.guild.name}\nUsuaries: ${message.guild.memberCount}`);
 	}
