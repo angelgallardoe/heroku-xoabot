@@ -1,13 +1,14 @@
 /** * A bot that welcomes new guild members when they join */
 // Import the discord.js module
 const Discord = require('discord.js');
-const Attachment = require('discord.js');
+
 
 // Create an instance of a Discord client
 const client = new Discord.Client();
 
 const { prefix } = require('./config.json');
 
+const Attachment = require('discord.js');
 /**
  * The ready event is vital, it means that only _after_ this will your bot start reacting to information
  * received from Discord
@@ -45,15 +46,10 @@ client.on('message', message => {
 		else if (command === 'roll-info') {
 		message.channel.send('Info tirado de dados\n!roll :     1d6 (1 dado de 6)\n!roll 15 : d15 (1 dado de 15)\n!roll 4d : 4d6 (4 dados de 6)\n!roll 4d30 : 4d30 (4 dados de 30)');
 	}
-		else if (command === 'scubi') {
-		const attachment = new Attachment('https://i.imgur.com/GMHQ3kZ.jpg');
-        // Send the attachment in the message channel
-        message.channel.send(attachment);
-	}
-	else if (command === 'server') {
+		else if (command === 'server') {
 		message.channel.send(`Server: ${message.guild.name}\nUsuaries: ${message.guild.memberCount}`);
 	}
-	else if (command === 'user-info') {
+		else if (command === 'user-info') {
 		message.channel.send(`Nombre: ${message.author.username}\nID: ${message.author.id}`);
 	}
 	else if (command === 'info') {
@@ -101,6 +97,18 @@ client.on('message', message => {
 			message.channel.send('there was an error trying to prune messages in this channel!');
 		});
 	}
+});
+
+//
+
+client.on('message', message => {
+    // If the message is '!rip'
+    if (message.content === '!rip') {
+        // Create the attachment using Attachment
+        const attachment = new Attachment('https://i.imgur.com/GMHQ3kZ.jpg'');
+        // Send the attachment in the message channel
+        message.channel.send(attachment);
+    }
 });
 
 
