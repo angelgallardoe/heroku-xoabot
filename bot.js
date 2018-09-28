@@ -97,7 +97,7 @@ client.on('message', message => {
 client.on('message', (message) => {
   const messageWords = message.content.split(' ');
   const rollFlavor = messageWords.slice(2).join(' ');
-  if (messageWords[0] === '!roll') {
+  if (messageWords[0] === '!dados') {
     if (messageWords.length === 1) {
       // !roll
       return message.reply(
