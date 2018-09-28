@@ -5,12 +5,12 @@ const Discord = require('discord.js');
 // Create an instance of a Discord client
 const client = new Discord.Client();
 
-/** * The ready event is vital, it means that only _after_ this will your bot start reacting to information
- * received from Discord */
+/**
+ * The ready event is vital, it means that only _after_ this will your bot start reacting to information
+ * received from Discord
+ */
 client.on('ready', () => {
-  console.log('Connected');
-  console.log('Logged in as: ');
-  console.log(client.username + ' - (' + client.id + ')');
+  console.log('I am ready!');
 });
 
 client.on('message', function (user, userID, channelID, message) {
