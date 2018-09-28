@@ -23,8 +23,10 @@ client.on('guildMemberAdd', member => {
   channel.send('Welcome to the server, ${member}');
 });
 
-
-
+if (message.content === '!ping') {
+    // send back "Pong." to the channel the message was sent in
+    message.channel.send('Pong.');
+}
 
 // Log our bot in using the token from https://discordapp.com/developers/applications/me
 client.login('NDkzOTY2MTY1Njg1NTY3NDk0.Dosukg.zXRcfBJRL1j4QBrlZ_UhoP2ICWQ');
