@@ -13,15 +13,12 @@ const client = new Discord.Client();
  * The ready event is vital, it means that only _after_ this will your bot start reacting to information
  * received from Discord
  */
-client.on('ready', () => {
-  console.log('I am ready!');
-});
-
 client.on('ready', function (evt) {
     logger.info('Connected');
     logger.info('Logged in as: ');
     logger.info(client.username + ' - (' + client.id + ')');
 });
+
 client.on('message', function (user, userID, channelID, message, evt) {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
@@ -32,10 +29,10 @@ client.on('message', function (user, userID, channelID, message, evt) {
         args = args.splice(1);
         switch(cmd) {
             // !ping
-            case 'ping':
+            case 'pinga':
                 bot.sendMessage({
                     to: channelID,
-                    message: 'Pong!'
+                    message: 'Ponga!'
                 });
             break;
             // Just add any case commands if you want to..
@@ -44,11 +41,11 @@ client.on('message', function (user, userID, channelID, message, evt) {
 });
 
 // M E N S A J E S //
-client.on("message", (message) => {
-  if (message.content == ("ping")) {
+client.on("message", (message) {
+  if (message.content == ("!ping1")) {
     message.channel.send("pong!");
   }
-  else if (message.content == "!ping") {
+  else if (message.content == "!ping2") {
     	message.reply("Pong!");
   	} 
     else if (message.content == "!cigarro") {
