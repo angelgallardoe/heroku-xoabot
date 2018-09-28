@@ -42,7 +42,7 @@ client.on('message', message => {
 		message.channel.send('No tengo gil conchetumare');
 	}
 		else if (command === 'roll-info') {
-		message.channel.send('Info tirado de dados/n!roll : 1d6 (1 dado de 6)/n!roll 15 : d15 (1 dado de 15)/n!roll : 4d (4 dados de 20)');
+		message.channel.send('Info tirado de dados\n!roll : 1d6 (1 dado de 6)\n!roll 15 : d15 (1 dado de 15)\n!roll : 4d (4 dados de 20)');
 	}
 	else if (command === 'server') {
 		message.channel.send(`Server: ${message.guild.name}\nUsuaries: ${message.guild.memberCount}`);
