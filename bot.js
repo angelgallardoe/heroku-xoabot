@@ -13,15 +13,18 @@ client.on('ready', () => {
   console.log('I am ready!');
 });
 
-// PING CHECK//
-client.on("message", (message)){ // EventEmitter
-	if(message.content == "!ping"){ // Check if message is "!ping"
-			message.channel.send("Pinging ...") // Placeholder for pinging ... 
-			.then((msg) => { // Resolve promise
-				msg.edit("Ping: " + (Date.now() - msg.createdTimestamp)) // Edits message with current timestamp minus timestamp of message
-			});
-		}
-}
+// Create an event listener for new guild members
+client.on('guildMemberAdd', member => {
+  // Send the message to a designated channel on a server:
+  const channel = member.guild.channels.find(ch => ch.name === 'member-log');
+  // Do nothing if the channel wasn't found on this server
+  if (!channel) return;
+  // Send the message, mentioning the member
+  channel.send('Welcome to the server, ${member}');
+});
+
+
+
 
 // Log our bot in using the token from https://discordapp.com/developers/applications/me
 client.login('NDkzOTY2MTY1Njg1NTY3NDk0.Dosukg.zXRcfBJRL1j4QBrlZ_UhoP2ICWQ');
