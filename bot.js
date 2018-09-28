@@ -43,16 +43,6 @@ client.on('message', function (user, userID, channelID, message, evt) {
      }
 });
 
-// PING CHECK//
-client.on("message", (message)){ // EventEmitter
-	if(message.content == "!pinga"){ // Check if message is "!ping"
-			message.channel.send("Pinging ...") // Placeholder for pinging ... 
-			.then((msg) => { // Resolve promise
-				msg.edit("Ping: " + (Date.now() - msg.createdTimestamp)) // Edits message with current timestamp minus timestamp of message
-			});
-		}
-}
-
 // M E N S A J E S //
 client.on("message", (message) => {
   if (message.content == ("ping")) {
