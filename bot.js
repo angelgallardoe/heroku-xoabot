@@ -8,8 +8,10 @@ const client = new Discord.Client();
 
 const { prefix } = require('./config.json');
 
-/** * The ready event is vital, it means that only _after_ this will your bot start reacting to information
- * received from Discord */
+/**
+ * The ready event is vital, it means that only _after_ this will your bot start reacting to information
+ * received from Discord
+ */
 client.on('ready', () => {
   console.log('I am ready!');
 });
@@ -96,37 +98,48 @@ client.on('message', message => {
 	}
 });
 
-//exp//
 
 
+//DADOS//
 
-let points = JSON.parse(fs.readFileSync("./points.json", "utf8"));
-const prefix = "+";
+client.on('message', (message) => {
+  const messageWords = message.content.split(' ');
+  const rollFlavor = messageWords.slice(2).join(' ');
+  if (messageWords[0] === '!roll') {
+    if (messageWords.length === 1) {
+      // !roll
+      return message.reply(
+        (Math.floor(Math.random() * 6) + 1) + ' ' + rollFlavor
+      );
+    }
 
-client.on("message", message => {
-  if (!message.content.startsWith(prefix)) return;
-  if (message.author.bot) return;
-
-  if (!points[message.author.id]) points[message.author.id] = {
-    points: 0,
-    level: 0
-  };
-  let userData = points[message.author.id];
-  userData.points++;
-
-  let curLevel = Math.floor(0.1 * Math.sqrt(userData.points));
-  if (curLevel > userData.level) {
-    // Level up!
-    userData.level = curLevel;
-    message.reply(`You"ve leveled up to level **${curLevel}**! Ain"t that dandy?`);
+    let sides = messageWords[1]; // !roll 20
+    let rolls = 1;
+    if (!isNaN(messageWords[1][0] / 1) && messageWords[1].includes('d')) {
+      // !roll 4d20
+      rolls = messageWords[1].split('d')[0] / 1;
+      sides = messageWords[1].split('d')[1];
+    } else if (messageWords[1][0] == 'd') {
+      // !roll d20
+      sides = sides.slice(1);
+    }
+    sides = sides / 1; // convert to number
+    if (isNaN(sides) || isNaN(rolls)) {
+      return;
+    }
+    if (rolls > 1) {
+      const rollResults = [];
+      for (let i = 0; i < rolls; i++) {
+        rollResults.push(Math.floor(Math.random()*sides)+1);
+      }
+      const sum = rollResults.reduce((a,b) => a + b);
+      return message.reply(`[${rollResults.toString()}] ${rollFlavor}`);
+    } else {
+      return message.reply(
+        (Math.floor(Math.random() * sides) + 1) + ' ' + rollFlavor
+      );
+    }
   }
-
-  if (message.content.startsWith(prefix + "level")) {
-    message.reply(`You are currently level ${userData.level}, with ${userData.points} points.`);
-  }
-  fs.writeFile("./points.json", JSON.stringify(points), (err) => {
-    if (err) console.error(err)
-  });
 });
 
 // Log our bot in using the token from https://discordapp.com/developers/applications/me
