@@ -46,7 +46,7 @@ client.on('message', message => {
 		message.channel.send('Boop.');
 	}
 	else if (command === 'cuica') {
-		message.channel.send([index.length]);
+		message.channel.send(results[lastIndex]);
 	}
 		else if (command === 'cigarro') {
 		message.channel.send('No tengo gil conchetumare');
@@ -163,33 +163,23 @@ client.on('message', (message) => {
 
 //
 
-function getRandomIndexByProbability(probabilities) {
-    var r = Math.random(),
-        index = probabilities.length - 1;
+var weights = [0.3, 0.3, 0.3, 0.1]; // probabilities
+var results = ['xa', 'xb', 'xc', 'xd']; // values to return
 
-    probabilities.some(function (probability, i) {
-        if (r < probability) {
-            index = i;
-            return true;
+function getRandom () {
+    var num = Math.random(),
+        s = 0,
+        lastIndex = weights.length - 1;
+
+    for (var i = 0; i < lastIndex; ++i) {
+        s += weights[i];
+        if (num < s) {
+            return results[i];
         }
-        r -= probability;
-    });
-    return index;
-}
+    }
 
-var i,
-    probabilities = [0.25, 0.25, 0.25, 0.25],// probabilities
-    count = {},
-    index = ['Cómo saberlo?', 'Not a chance', 'Eso dicen', 'Cómo saberlo?'];// values to return
-
-probabilities.forEach(function (a) { count[a] = 0; });
-
-for (i = 0; i < 1e6; i++) {
-    index = getRandomIndexByProbability(probabilities);
-    count[probabilities[index]]++
-}
-
-console.log(count);
+    return results[lastIndex];
+};
 
 //
 
