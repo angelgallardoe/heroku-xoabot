@@ -44,7 +44,7 @@ client.on('message', message => {
 		message.channel.send('Boop.');
 	}
 	else if (command === 'cuica') {
-		message.channel.send(+ esCuica());
+		message.channel.send(esCuica());
 	}
 		else if (command === 'cigarro') {
 		message.channel.send('No tengo gil conchetumare');
