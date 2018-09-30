@@ -8,9 +8,8 @@ const client = new Discord.Client();
 const { prefix } = require('./config.json');
 
 //
-var weights = [0.3, 0.3, 0.3, 0.1]; // probabilities
-var results = ['xa', 'xb', 'xc', 'xd']; // values to return
-
+var mytallas = ['Eso no lo sabemos', 'Probablemente', 'NOT A CHANCE PAL'];
+var talla = mytallas[Math.floor(Math.random() * mytallas.length)];
 
 
 //
@@ -47,7 +46,7 @@ client.on('message', message => {
 		message.channel.send('Boop.');
 	}
 	else if (command === 'cuica') {
-		message.channel.send(results[lastIndex]);
+		message.channel.send([talla]);
 	}
 		else if (command === 'cigarro') {
 		message.channel.send('No tengo gil conchetumare');
@@ -163,23 +162,6 @@ client.on('message', (message) => {
 });
 
 //
-
-
-
-function getRandom () {
-    var num = Math.random(),
-        s = 0,
-        lastIndex = weights.length - 1;
-
-    for (var i = 0; i < lastIndex; ++i) {
-        s += weights[i];
-        if (num < s) {
-            return results[i];
-        }
-    }
-
-    return results[lastIndex];
-};
 
 //
 
