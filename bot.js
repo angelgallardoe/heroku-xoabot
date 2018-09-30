@@ -8,16 +8,14 @@ const client = new Discord.Client();
 const { prefix } = require('./config.json');
 
 //
-var mytallas = ['Eso no lo sabemos', 'Probablemente', 'NOT A CHANCE PAL'];
-var talla = mytallas[Math.floor(Math.random() * mytallas.length)];
+function esCuica() {
+    var rand = ['Eso no lo sabemos', 'Probablemente', 'NOT A CHANCE PAL'];
+    return rand[Math.floor(Math.random()*rand.length)];
+}
 
 
-//
-
-/**
- * The ready event is vital, it means that only _after_ this will your bot start reacting to information
- * received from Discord
- */
+/** * The ready event is vital, it means that only _after_ this will your bot start reacting to information
+ * received from Discord */
 client.on('ready', () => {
   console.log('I am ready!');
 });
@@ -46,7 +44,7 @@ client.on('message', message => {
 		message.channel.send('Boop.');
 	}
 	else if (command === 'cuica') {
-		message.channel.send([talla]);
+		message.channel.send('La respuesta es: ' + esCuica());
 	}
 		else if (command === 'cigarro') {
 		message.channel.send('No tengo gil conchetumare');
