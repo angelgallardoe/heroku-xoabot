@@ -9,23 +9,8 @@ const { prefix } = require('./config.json');
 
 //
 
-var weights = [0.25, 0.25, 0.25, 0.25]; // probabilities
-var results = ['Cómo saberlo?', 'Not a chance', 'Eso dicen', 'Cómo saberlo?']; // values to return
 
-function getRandom () {
-    var num = Math.random(),
-        s = 0,
-        lastIndex = weights.length - 1;
 
-    for (var i = 0; i < lastIndex; ++i) {
-        s += weights[i];
-        if (num < s) {
-            return results[i];
-        }
-    }
-
-    return results[lastIndex];
-};
 
 //
 
@@ -61,7 +46,7 @@ client.on('message', message => {
 		message.channel.send('Boop.');
 	}
 	else if (command === 'cuica') {
-		message.channel.send(results[lastIndex]);
+		message.channel.send([index]);
 	}
 		else if (command === 'cigarro') {
 		message.channel.send('No tengo gil conchetumare');
@@ -175,6 +160,38 @@ client.on('message', (message) => {
     }
   }
 });
+
+//
+
+function getRandomIndexByProbability(probabilities) {
+    var r = Math.random(),
+        index = probabilities.length - 1;
+
+    probabilities.some(function (probability, i) {
+        if (r < probability) {
+            index = i;
+            return true;
+        }
+        r -= probability;
+    });
+    return index;
+}
+
+var i,
+    probabilities = [0.25, 0.25, 0.25, 0.25],// probabilities
+    count = {},
+    index = ['Cómo saberlo?', 'Not a chance', 'Eso dicen', 'Cómo saberlo?'];// values to return
+
+probabilities.forEach(function (a) { count[a] = 0; });
+
+for (i = 0; i < 1e6; i++) {
+    index = getRandomIndexByProbability(probabilities);
+    count[probabilities[index]]++
+}
+
+console.log(count);
+
+//
 
 // Log our bot in using the token from https://discordapp.com/developers/applications/me
 client.login('NDkzOTY2MTY1Njg1NTY3NDk0.Dosukg.zXRcfBJRL1j4QBrlZ_UhoP2ICWQ');
