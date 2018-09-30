@@ -7,8 +7,27 @@ const client = new Discord.Client();
 
 const { prefix } = require('./config.json');
 
-var facts = ['Cómo saberlo?', 'Eso dicen', 'Not a chance','Cómo saberlo?', 'Eso dicen', 'Not a chance'];
-var fact = Math.floor(Math.random() * facts.length);
+//
+
+var weights = [0.25, 0.25, 0.25, 0.25]; // probabilities
+var results = ['Cómo saberlo?', 'Not a chance', 'Eso dicen', 'Cómo saberlo?']; // values to return
+
+function getRandom () {
+    var num = Math.random(),
+        s = 0,
+        lastIndex = weights.length - 1;
+
+    for (var i = 0; i < lastIndex; ++i) {
+        s += weights[i];
+        if (num < s) {
+            return results[i];
+        }
+    }
+
+    return results[lastIndex];
+};
+
+//
 
 /**
  * The ready event is vital, it means that only _after_ this will your bot start reacting to information
@@ -42,7 +61,7 @@ client.on('message', message => {
 		message.channel.send('Boop.');
 	}
 	else if (command === 'cuica') {
-		message.channel.send(facts[fact]);
+		message.channel.send(results[lastIndex]);
 	}
 		else if (command === 'cigarro') {
 		message.channel.send('No tengo gil conchetumare');
