@@ -7,6 +7,9 @@ const client = new Discord.Client();
 
 const { prefix } = require('./config.json');
 
+var facts = ["Cómo saberlo?", "Eso dicen", "Not a chance"];
+var fact = Math.floor(Math.random() * facts.length);
+
 /**
  * The ready event is vital, it means that only _after_ this will your bot start reacting to information
  * received from Discord
@@ -37,6 +40,9 @@ client.on('message', message => {
 	}
 	else if (command === 'beep') {
 		message.channel.send('Boop.');
+	}
+	else if (command === 'cuica') {
+		message.channel.send(facts[fact]);
 	}
 		else if (command === 'cigarro') {
 		message.channel.send('No tengo gil conchetumare');
