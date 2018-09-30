@@ -8,7 +8,8 @@ const client = new Discord.Client();
 const { prefix } = require('./config.json');
 
 //
-
+var weights = [0.3, 0.3, 0.3, 0.1]; // probabilities
+var results = ['xa', 'xb', 'xc', 'xd']; // values to return
 
 
 
@@ -163,8 +164,7 @@ client.on('message', (message) => {
 
 //
 
-var weights = [0.3, 0.3, 0.3, 0.1]; // probabilities
-var results = ['xa', 'xb', 'xc', 'xd']; // values to return
+
 
 function getRandom () {
     var num = Math.random(),
