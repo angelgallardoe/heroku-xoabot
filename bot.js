@@ -7,8 +7,8 @@ const client = new Discord.Client();
 
 const { prefix } = require('./config.json');
 
-var facts = ['Cómo saberlo?', 'Eso dicen', 'Not a chance'];
-var fact = Math.floor(Math.random() * facts.length -1);
+var facts = ['Cómo saberlo?', 'Eso dicen', 'Not a chance','Cómo saberlo?', 'Eso dicen', 'Not a chance'];
+var fact = Math.floor(Math.random() * facts.length);
 
 /**
  * The ready event is vital, it means that only _after_ this will your bot start reacting to information
