@@ -9,7 +9,7 @@ const { prefix } = require('./config.json');
 
 //
 function esCuica() {
-    var rand = ['Eso no lo sabemos', 'Probablemente', 'NOT A CHANCE PAL'];
+    var rand = ['Eso no lo sabemos', 'Probablemente', 'NOT A CHANCE PAL', 'La respuesta está en tu corazón', 'Pregúntale a tu vieja'];
     return rand[Math.floor(Math.random()*rand.length)];
 }
 
@@ -44,7 +44,7 @@ client.on('message', message => {
 		message.channel.send('Boop.');
 	}
 	else if (command === 'cuica') {
-		message.channel.send('La respuesta es: ' + esCuica());
+		message.channel.send(+ esCuica());
 	}
 		else if (command === 'cigarro') {
 		message.channel.send('No tengo gil conchetumare');
