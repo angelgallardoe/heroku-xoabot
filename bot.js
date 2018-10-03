@@ -162,9 +162,5 @@ client.on('message', (message) => {
 //
 
 //
-
-// Log our bot in using the token from https://discordapp.com/developers/applications/me
-client.login('NDkzOTY2MTY1Njg1NTY3NDk0.Dosukg.zXRcfBJRL1j4QBrlZ_UhoP2ICWQ');
-
 // THIS  MUST  BE  THIS  WAY //
 client.login(process.env.bot_token);
