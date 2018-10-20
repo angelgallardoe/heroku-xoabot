@@ -47,10 +47,10 @@ client.on('message', message => {
 		message.channel.send(esCuica());
 	}
 		else if (command === 'cigarro') {
-		message.channel.send('No tengo gil conchetumare');
+		message.channel.send('No tengo gil');
 	}
     else if (command === 'gato') {
-		message.channel.send('Las calorías conchetumare');
+		message.channel.send('Las calorías');
 	}
 		else if (command === 'roll-info') {
 		message.channel.send('Info tirado de dados\n!roll :     1d6 (1 dado de 6)\n!roll 15 : d15 (1 dado de 15)\n!roll 4d : 4d6 (4 dados de 6)\n!roll 4d30 : 4d30 (4 dados de 30)');
